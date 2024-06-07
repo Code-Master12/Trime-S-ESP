@@ -52,14 +52,14 @@ function ESP:toggleESP()
     if ESPEnabled then
         DisableESP()
         game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Trime -S";
-            Text = "ESP Disabled";
+            Title = "Trime -S",
+            Text = "ESP Disabled",
         })
     else
         EnableESP()
         game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Trime -S";
-            Text = "ESP Enabled";
+            Title = "Trime -S",
+            Text = "ESP Enabled",
         })
     end
 end
@@ -73,6 +73,13 @@ local function UpdateESP()
         else
             RemoveESP(player)
         end
+    end
+end
+
+local function ToggleESPPeriodically()
+    while true do
+        ESP:toggleESP()
+        wait(3) -- 3 saniyede bir ESP durumunu değiştir
     end
 end
 
@@ -92,14 +99,12 @@ Players.PlayerAdded:Connect(function(player)
             CreateESP(player)
         end
     end)
-    -- Eğer oyuncu zaten karaktere sahipse ESP'yi hemen ekleyelim
-    if ESPEnabled and player.Character then
-        CreateESP(player)
-    end
 end)
 
 Players.PlayerRemoving:Connect(function(player)
     RemoveESP(player)
 end)
+
+spawn(ToggleESPPeriodically)
 
 return ESP
