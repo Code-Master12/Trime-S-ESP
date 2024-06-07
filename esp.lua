@@ -2,6 +2,7 @@ local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
+local ESP = {}
 
 local ESPEnabled = false
 local highlights = {}
@@ -28,7 +29,7 @@ local function RemoveESP(player)
     end
 end
 
-local function EnableESP()
+function ESP:EnableESP()
     ESPEnabled = true
     for _, player in pairs(Players:GetPlayers()) do
         if not highlights[player] then
@@ -37,7 +38,7 @@ local function EnableESP()
     end
 end
 
-local function DisableESP()
+function ESP:DisableESP()
     ESPEnabled = false
     for player, highlight in pairs(highlights) do
         if highlight then
