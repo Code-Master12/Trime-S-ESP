@@ -51,13 +51,13 @@ end
 function ESP:toggleESP()
     ESPEnabled = not ESPEnabled
     if ESPEnabled then
-        ESP:EnableESP()
+        EnableESP()
         StarterGui:SetCore("SendNotification", {
             Title = "Trime -S",
             Text = "ESP Enabled!",
         })
     else
-        ESP:DisableESP()
+        DisableESP()
         StarterGui:SetCore("SendNotification", {
             Title = "Trime -S",
             Text = "ESP Disabled!",
