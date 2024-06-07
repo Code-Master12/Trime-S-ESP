@@ -82,7 +82,7 @@ end
 
 local function ToggleESPPeriodically()
     while true do
-        wait(3)
+        wait(1)
         if ESPEnabled then
             DisableESP()
             EnableESP()
