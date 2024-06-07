@@ -53,13 +53,13 @@ function ESP:toggleESP()
         DisableESP()
         game:GetService("StarterGui"):SetCore("SendNotification", {
             Title = "Trime -S";
-            Text = "ESP Disabled!";
+            Text = "ESP Disabled";
         })
     else
         EnableESP()
         game:GetService("StarterGui"):SetCore("SendNotification", {
             Title = "Trime -S";
-            Text = "ESP Enabled!";
+            Text = "ESP Enabled";
         })
     end
 end
