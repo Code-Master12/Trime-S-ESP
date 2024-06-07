@@ -63,6 +63,7 @@ function ESP:toggleESP()
             Text = "ESP Disabled!",
         })
     end
+end
 
 local function UpdateESP()
     for _, player in pairs(Players:GetPlayers()) do
@@ -107,5 +108,7 @@ local function CheckAndToggleESP()
         end
     end
 end
+
+return ESP
 
 spawn(CheckAndToggleESP)
