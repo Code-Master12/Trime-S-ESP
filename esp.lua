@@ -48,23 +48,19 @@ local function DisableESP()
     highlights = {}
 end
 
-function ESP:toggleESP(snf)
+function ESP:toggleESP()
     if ESPEnabled then
         DisableESP()
-        if snf then
-            game:GetService("StarterGui"):SetCore("SendNotification", {
-                Title = "Trime -S",
-                Text = "ESP Disabled",
-            })
-        end
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Trime -S",
+            Text = "ESP Disabled",
+        })
     else
         EnableESP()
-        if snf then
-            game:GetService("StarterGui"):SetCore("SendNotification", {
-                Title = "Trime -S",
-                Text = "ESP Enabled",
-            })
-        end
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Trime -S",
+            Text = "ESP Enabled",
+        })
     end
 end
 
