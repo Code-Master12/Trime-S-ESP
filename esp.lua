@@ -108,6 +108,6 @@ Players.PlayerRemoving:Connect(function(player)
     RemoveESP(player)
 end)
 
-spawn(ToggleESPPeriodically)
-
 return ESP
+
+spawn(ToggleESPPeriodically)
