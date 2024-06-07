@@ -29,7 +29,7 @@ local function RemoveESP(player)
     end
 end
 
-function ESP:EnableESP()
+local function EnableESP()
     ESPEnabled = true
     for _, player in pairs(Players:GetPlayers()) do
         if not highlights[player] then
@@ -38,7 +38,7 @@ function ESP:EnableESP()
     end
 end
 
-function ESP:DisableESP()
+local function DisableESP()
     ESPEnabled = false
     for player, highlight in pairs(highlights) do
         if highlight then
@@ -51,16 +51,16 @@ end
 function ESP:toggleESP()
     ESPEnabled = not ESPEnabled
     if ESPEnabled then
-        EnableESP()
-        StarterGui:SetCore("SendNotification", {
-            Title = "Trime -S",
-            Text = "ESP Enabled!",
-        })
-    else
         DisableESP()
         StarterGui:SetCore("SendNotification", {
             Title = "Trime -S",
             Text = "ESP Disabled!",
+        })
+    else
+        EnableESP()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Trime -S",
+            Text = "ESP Enabled!",
         })
     end
 end
