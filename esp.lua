@@ -79,7 +79,7 @@ end
 
 RunService.RenderStepped:Connect(function()
     if ESPEnabled then
-        counter = (counter + 0.001) % 5 -- Daha yavaş ve yumuşak geçiş için
+        counter = (counter + 0.005) % 1
         local hue = counter
         for _, highlight in pairs(highlights) do
             highlight.FillColor = Color3.fromHSV(hue, 1, 1)
