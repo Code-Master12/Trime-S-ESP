@@ -78,7 +78,7 @@ end
 
 RunService.RenderStepped:Connect(function()
     if ESPEnabled then
-        counter = (counter + 0.005) % 1
+        counter = (counter + 0.003) % 1
         local hue = counter
         for _, highlight in pairs(highlights) do
             highlight.FillColor = Color3.fromHSV(hue, 1, 1)
