@@ -49,11 +49,18 @@ local function DisableESP()
 end
 
 function ESP:toggleESP()
-    ESPEnabled = not ESPEnabled
     if ESPEnabled then
-        EnableESP()
-    else
         DisableESP()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Trime -S",
+            Text = "ESP Disabled!",
+        })
+    else
+        EnableESP()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Trime -S",
+            Text = "ESP Enabled!",
+        })
     end
 end
 
