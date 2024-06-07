@@ -48,6 +48,22 @@ function ESP:DisableESP()
     highlights = {}
 end
 
+function ESP:toggleESP()
+    ESPEnabled = not ESPEnabled
+    if ESPEnabled then
+        ESP:EnableESP()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Trime -S",
+            Text = "ESP Enabled!",
+        })
+    else
+        ESP:DisableESP()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Trime -S",
+            Text = "ESP Disabled!",
+        })
+    end
+
 local function UpdateESP()
     for _, player in pairs(Players:GetPlayers()) do
         if ESPEnabled then
