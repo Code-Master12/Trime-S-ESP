@@ -82,17 +82,6 @@ Players.PlayerRemoving:Connect(function(player)
     RemoveESP(player)
 end)
 
-UserInputService.InputBegan:Connect(function(input)
-    if input.KeyCode == Enum.KeyCode.E then
-        ESPEnabled = not ESPEnabled
-        if ESPEnabled then
-            EnableESP()
-        else
-            DisableESP()
-        end
-    end
-end)
-
 local function CheckAndToggleESP()
     while true do
         wait(1)
