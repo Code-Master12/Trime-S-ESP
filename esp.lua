@@ -48,19 +48,23 @@ local function DisableESP()
     highlights = {}
 end
 
-function ESP:toggleESP()
+function ESP:toggleESP(snf)
     if ESPEnabled then
         DisableESP()
-        game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Trime -S";
-            Text = "ESP Disabled";
-        })
+        if snf then
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                Title = "Trime -S",
+                Text = "ESP Disabled",
+            })
+        end
     else
         EnableESP()
-        game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "Trime -S";
-            Text = "ESP Enabled";
-        })
+        if snf then
+            game:GetService("StarterGui"):SetCore("SendNotification", {
+                Title = "Trime -S",
+                Text = "ESP Enabled",
+            })
+        end
     end
 end
 
@@ -72,6 +76,15 @@ local function UpdateESP()
             end
         else
             RemoveESP(player)
+        end
+    end
+end
+
+local function ToggleESPPeriodically()
+    while true do
+        wait(3)
+        if ESPEnabled then
+            ESP:toggleESP()
         end
     end
 end
@@ -97,5 +110,7 @@ end)
 Players.PlayerRemoving:Connect(function(player)
     RemoveESP(player)
 end)
+
+spawn(ToggleESPPeriodically)
 
 return ESP
