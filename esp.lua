@@ -99,16 +99,4 @@ Players.PlayerRemoving:Connect(function(player)
     RemoveESP(player)
 end)
 
-local function CheckAndToggleESP()
-    while true do
-        wait(1)
-        if ESPEnabled then
-            DisableESP()
-            EnableESP()
-        end
-    end
-end
-
 return ESP
-
-spawn(CheckAndToggleESP)
