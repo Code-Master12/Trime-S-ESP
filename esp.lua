@@ -92,6 +92,10 @@ Players.PlayerAdded:Connect(function(player)
             CreateESP(player)
         end
     end)
+    -- Eğer oyuncu zaten karaktere sahipse ESP'yi hemen ekleyelim
+    if ESPEnabled and player.Character then
+        CreateESP(player)
+    end
 end)
 
 Players.PlayerRemoving:Connect(function(player)
