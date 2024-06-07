@@ -78,8 +78,11 @@ end
 
 local function ToggleESPPeriodically()
     while true do
-        ESP:toggleESP()
-        wait(3) -- 3 saniyede bir ESP durumunu değiştir
+        if ESPEnabled then
+            DisableESP()
+            EnableESP()
+            wait(3)
+        end
     end
 end
 
