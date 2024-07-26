@@ -50,13 +50,13 @@ end
 
 function ESP:toggleESP()
     if ESPEnabled then
-        ESP:DisableESP()
+        self:DisableESP()
         game:GetService("StarterGui"):SetCore("SendNotification", {
             Title = "Trime -S",
             Text = "ESP Disabled",
         })
     else
-        ESP:EnableESP()
+        self:EnableESP()
         game:GetService("StarterGui"):SetCore("SendNotification", {
             Title = "Trime -S",
             Text = "ESP Enabled",
@@ -80,8 +80,8 @@ local function ToggleESPPeriodically()
     while true do
         wait(2.5)
         if ESPEnabled then
-            DisableESP()
-            EnableESP()
+            ESP:DisableESP()
+            ESP:EnableESP()
         end
     end
 end
