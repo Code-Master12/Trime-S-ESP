@@ -1,1 +1,113 @@
-local v0=string.char;local v1=string.byte;local v2=string.sub;local v3=bit32 or bit ;local v4=v3.bxor;local v5=table.concat;local v6=table.insert;local function v7(v23,v24) local v25={};for v32=1, #v23 do v6(v25,v0(v4(v1(v2(v23,v32,v32 + 1 )),v1(v2(v24,1 + (v32% #v24) ,1 + (v32% #v24) + 1 )))%256 ));end return v5(v25);end local v8=game:GetService(v7("\225\207\218\60\227\169\212","\126\177\163\187\69\134\219\167"));local v9=v8.LocalPlayer;local v10=game:GetService(v7("\17\216\36\246\249\49\219\35\198\249","\156\67\173\74\165"));local v11=game:GetService(v7("\1\164\76\4\149\40\86\33\163\122\19\174\48\79\55\178","\38\84\215\41\118\220\70"));local v12={};local v13=false;local v14={};local v15=0 -0 ;local function v16(v26) if ((v26~=v9) and v26.Character) then local v38=1747 -(760 + 987) ;local v39;while true do if (v38==(1916 -(1789 + 124))) then v39.OutlineTransparency=766 -(745 + 21) ;v39.Parent=v26.Character;v38=2 + 2 ;end if (v38==(10 -6)) then v14[v26]=v39;break;end if (v38==(0 -0)) then local v52=0 + 0 ;while true do if (v52==(1 + 0)) then v38=1056 -(87 + 968) ;break;end if (v52==(0 -0)) then v39=Instance.new(v7("\120\31\37\26\242\89\17\42\6","\158\48\118\66\114"));v39.Adornee=v26.Character;v52=1 + 0 ;end end end if (v38==(4 -2)) then v39.FillTransparency=1413.5 -(447 + 966) ;v39.OutlineColor=Color3.new(0 -0 ,1818 -(1703 + 114) ,701 -(376 + 325) );v38=3;end if (v38==1) then v39.DepthMode=Enum.HighlightDepthMode.AlwaysOnTop;v39.FillColor=Color3.new(1 -0 ,0 -0 ,0 + 0 );v38=4 -2 ;end end end end local function v17(v27) if v14[v27] then local v40=0;while true do if (v40==(14 -(9 + 5))) then v14[v27]:Destroy();v14[v27]=nil;break;end end end end local function v18() v13=true;for v33,v34 in pairs(v8:GetPlayers()) do if  not v14[v34] then v16(v34);end end end local function v19() local v28=0;while true do if (v28==0) then v13=false;for v46,v47 in pairs(v14) do if v47 then v47:Destroy();end end v28=377 -(85 + 291) ;end if (v28==(1266 -(243 + 1022))) then v14={};break;end end end v12.toggleESP=function(v29) if v13 then local v41=0 -0 ;while true do if (0==v41) then v19();game:GetService(v7("\152\48\17\36\103\160\233\140\49\25","\155\203\68\112\86\19\197")):SetCore(v7("\117\216\56\248\110\119\241\241\64\212\53\253\84\113\234\246","\152\38\189\86\156\32\24\133"),{[v7("\200\94\179\74\249","\38\156\55\199")]=v7("\156\111\117\37\22\52\183\112","\35\200\29\28\72\115\20\154"),[v7("\45\186\201\203","\84\121\223\177\191\237\76")]=v7("\158\101\249\224\30\89\35\192\185\90\204\164","\161\219\54\169\192\90\48\80")});break;end end else local v42=0 + 0 ;local v43;while true do if (v42==0) then v43=0;while true do if (0==v43) then v18();game:GetService(v7("\122\86\1\55\93\71\18\2\92\75","\69\41\34\96")):SetCore(v7("\143\198\217\14\44\36\168\202\209\3\1\42\168\202\216\4","\75\220\163\183\106\98"),{[v7("\54\179\159\59\220","\185\98\218\235\87")]=v7("\255\46\46\235\219\234\134\15","\202\171\92\71\134\190"),[v7("\29\196\52\156","\232\73\161\76")]=v7("\158\234\114\29\59\181\216\64\81\27\191","\126\219\185\34\61")});break;end end break;end end end end;local function v21() for v35,v36 in pairs(v8:GetPlayers()) do if v13 then if (v36.Character and  not v14[v36]) then v16(v36);end else v17(v36);end end end local function v22() while true do local v37=1180 -(1123 + 57) ;while true do if (v37==(0 + 0)) then wait(256.5 -(163 + 91) );if v13 then local v59=0;while true do if (0==v59) then v19();v18();break;end end end break;end end end end v10.RenderStepped:Connect(function() if v13 then local v44=0;local v45;while true do if (v44==(1930 -(1869 + 61))) then v15=(v15 + 0.003 + 0)%1 ;v45=v15;v44=1;end if (v44==1) then for v60,v61 in pairs(v14) do v61.FillColor=Color3.fromHSV(v45,3 -2 ,1 -0 );end break;end end end end);v8.PlayerAdded:Connect(function(v30) v30.CharacterAdded:Connect(function() if v13 then v16(v30);end end);end);v8.PlayerRemoving:Connect(function(v31) v17(v31);end);spawn(v22);return v12;
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local ESP = {}
+
+local ESPEnabled = false
+local highlights = {}
+local counter = 0
+
+local function CreateESP(player)
+    if player ~= LocalPlayer and player.Character then
+        local highlight = Instance.new("Highlight")
+        highlight.Adornee = player.Character
+        highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+        highlight.FillColor = Color3.new(1, 0, 0)
+        highlight.FillTransparency = 0.5
+        highlight.OutlineColor = Color3.new(0, 1, 0)
+        highlight.OutlineTransparency = 0
+        highlight.Parent = player.Character
+        highlights[player] = highlight
+    end
+end
+
+local function RemoveESP(player)
+    if highlights[player] then
+        highlights[player]:Destroy()
+        highlights[player] = nil
+    end
+end
+
+function ESP:EnableESP()
+    ESPEnabled = true
+    for _, player in pairs(Players:GetPlayers()) do
+        if not highlights[player] then
+            CreateESP(player)
+        end
+    end
+end
+
+function ESP:DisableESP()
+    ESPEnabled = false
+    for player, highlight in pairs(highlights) do
+        if highlight then
+            highlight:Destroy()
+        end
+    end
+    highlights = {}
+end
+
+function ESP:toggleESP()
+    if ESPEnabled then
+        ESP:DisableESP()
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Trime -S",
+            Text = "ESP Disabled",
+        })
+    else
+        ESP:EnableESP()
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "Trime -S",
+            Text = "ESP Enabled",
+        })
+    end
+end
+
+local function UpdateESP()
+    for _, player in pairs(Players:GetPlayers()) do
+        if ESPEnabled then
+            if player.Character and not highlights[player] then
+                CreateESP(player)
+            end
+        else
+            RemoveESP(player)
+        end
+    end
+end
+
+local function ToggleESPPeriodically()
+    while true do
+        wait(2.5)
+        if ESPEnabled then
+            DisableESP()
+            EnableESP()
+        end
+    end
+end
+
+RunService.RenderStepped:Connect(function()
+    if ESPEnabled then
+        counter = (counter + 0.003) % 1
+        local hue = counter
+        for _, highlight in pairs(highlights) do
+            highlight.FillColor = Color3.fromHSV(hue, 1, 1)
+        end
+    end
+end)
+
+Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function()
+        if ESPEnabled then
+            CreateESP(player)
+        end
+    end)
+end)
+
+Players.PlayerRemoving:Connect(function(player)
+    RemoveESP(player)
+end)
+
+spawn(ToggleESPPeriodically)
+
+return ESP
